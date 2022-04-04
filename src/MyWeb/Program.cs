@@ -5,12 +5,12 @@ builder.Configuration
     .AddJsonFile("_app_/appsettings.json")
     .AddEnvironmentVariables();
 
+var settings = builder.Configuration.Get<AppSettings>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-var settings = builder.Configuration.Get<AppSettings>();
-Console.WriteLine(settings.A);
+builder.Services.AddSingleton(settings);
 
 var app = builder.Build();
 
